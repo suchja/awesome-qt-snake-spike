@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +22,8 @@ private slots:
     void exitGame();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
+
+    QGraphicsScene* m_scene;
 };
 #endif // MAINWINDOW_H
