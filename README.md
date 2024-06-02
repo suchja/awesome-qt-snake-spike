@@ -5,6 +5,11 @@ Es ist einige Zeit her, dass ich ein Teil von dir war und mich mit C++ und Qt be
 3. Zeigen wie ich üblicherweise entwickele (soweit das an einem so einfachen Beispiel möglich ist)
 4. Meine "Learnings" dokumentieren (basierend auf dem Ansatz *Today I learned (TIL)* wie gesehen bei [Josh Branchaud](https://github.com/jbranchaud/til))
 
+## `.ui` Dateien vs. manuelle Erstellung von Widgets
+Meine ersten Schritte mit dem *Qt Creator* und besonders dessen Integration des *Qt Designer*, waren eher holprig. Erstmal finde ich die UI des *Qt Creator* ziemlich "altmodisch". Außerdem merke ich, dass ich damit noch mehr lernen muss. Daher werde ich mich erstmal darauf konzentrieren die UI-Elemente im Code anzulegen. Vielleicht sehe ich dann später, was mir der *Qt Designer* abnimmt bzw. welche Vorteile er hat.
+
+Das geht natürlich nur, weil ich ohne einen Designer o.ä. arbeite. D.h. für die Arbeit in einem Team (insbesondere mit einem dedizierten Designer der sich im coden nicht so auskennt) sollte ich diese Entscheidung definitiv überarbeiten.
+
 ## Style-Guide
 Grundsätzlich gefällt mir der Ansatz der [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) von Bjarne Stroustrup und Herb Sutter. Allerdings fehlen mir darin ein paar Details beispielsweise im Bereich *Naming*. Daher gehe ich erstmal für mich mit folgenden "Zusätzen" bzw. Fokus:
 - Naming (ensure [NL.8 - Use a consistent naming style](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#nl8-use-a-consistent-naming-style):
