@@ -6,9 +6,10 @@ Es ist einige Zeit her, dass ich ein Teil von dir war und mich mit C++ und Qt be
 4. Meine "Learnings" dokumentieren (basierend auf dem Ansatz *Today I learned (TIL)* wie gesehen bei [Josh Branchaud](https://github.com/jbranchaud/til))
 
 ## `.ui` Dateien vs. manuelle Erstellung von Widgets
-Meine ersten Schritte mit dem *Qt Creator* und besonders dessen Integration des *Qt Designer*, waren eher holprig. Erstmal finde ich die UI des *Qt Creator* ziemlich "altmodisch". Außerdem merke ich, dass ich damit noch mehr lernen muss. Daher werde ich mich erstmal darauf konzentrieren die UI-Elemente im Code anzulegen. Vielleicht sehe ich dann später, was mir der *Qt Designer* abnimmt bzw. welche Vorteile er hat.
+Meine ersten Schritte mit dem *Qt Creator* und besonders dessen Integration des *Qt Designer*, waren eher holprig. Erstmal finde ich die UI des *Qt Creator* ziemlich "altmodisch". 
+Der entscheidende Aspekt ist hier jedoch wie ich am schnellsten lernen kann. Grundsätzlich zählt für mich der Code und diesen möchte ich auch gerne verstehen. *Qt Creator* generiert einiges bei der Verwendung des *Qt Designer* und ich muss zusätzlich noch das UI vom *Qt Creator* kennenlernen. Damit ich mich erstmal besser fokussieren kann, werde ich nur die grundlegenden Dinge über die `.ui` Datei und den *Qt Designer* erstellen. Das meiste werde ich im Code umsetzen.
 
-Das geht natürlich nur, weil ich ohne einen Designer o.ä. arbeite. D.h. für die Arbeit in einem Team (insbesondere mit einem dedizierten Designer der sich im coden nicht so auskennt) sollte ich diese Entscheidung definitiv überarbeiten.
+Dies ist sicherlich kein sehr konsequentes und vor allem konsistentes Vorgehen, aber ich muss mir erstmal ein Bild darüber machen was es gibt und wie ich verwenden möchte. Dieses Vorgehen wähle ich aktuell nur, weil es mir ums Lernen geht und ich nicht in einer bestehenden Code-Basis und einem team arbeite.
 
 ## Style-Guide
 Grundsätzlich gefällt mir der Ansatz der [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) von Bjarne Stroustrup und Herb Sutter. Allerdings fehlen mir darin ein paar Details beispielsweise im Bereich *Naming*. Daher gehe ich erstmal für mich mit folgenden "Zusätzen" bzw. Fokus:
