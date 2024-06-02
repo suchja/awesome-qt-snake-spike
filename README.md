@@ -14,6 +14,9 @@ Grundsätzlich gefällt mir der Ansatz der [C++ Core Guidelines](http://isocpp.g
   - Functions, including class methods, will be named in capitalized CamelCase.
   - Use `ALL_CAPS` for macro names only ([NL.9](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#nl9-use-all_caps-for-macro-names-only)
   - All names should be descriptive, other than loop counter variables like i (take into account [NL.7 - make length of a name roughly proportional to the length of its scope](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#nl7-make-the-length-of-a-name-roughly-proportional-to-the-length-of-its-scope)).
+- Pointer/References (haven't found a clear definition for this in the Guideline, but this is how most examples are given in the Guideline)
+  - Use `int* myPointerToInt` instead of `int *myOtherPointToInt` (and same way for references)
+    - Personally I believe the first version makes it clear that the pointer (or reference) is a property of the type ([see here](https://dev.to/codemouse92/cc-pointer-alignment-style-a-justification-13po))
 
 **Wichtig:** Für mich ist folgende Aussage von der [ISO C++ Coding Standard Seite](https://isocpp.org/wiki/faq/coding-standards#coding-std-wars) besonders wichtig:
 > A word of warning: Nearly every software engineer has, at some point, been exploited by someone who used coding standards as a “power play.” Dogmatism over minutiae is the purview of the intellectually weak. Don’t be like them.
