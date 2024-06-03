@@ -1,0 +1,6 @@
+#ifndef UICONSTANTS_H
+#define UICONSTANTS_H
+
+const int SINGLE_SQUARE_SIZE = 20;
+
+#endif // UICONSTANTS_H

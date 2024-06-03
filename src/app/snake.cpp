@@ -1,4 +1,5 @@
 #include "snake.h"
+#include "ui-constants.h"
 
 #include <QPainter>
 
@@ -9,7 +10,10 @@ Snake::Snake(const QPen& pen, const QBrush& brush, QGraphicsItem *parent)
 
 QRectF Snake::boundingRect() const
 {
-    return QRectF(0, 0, 100, 100);
+    return QRectF(SINGLE_SQUARE_SIZE,
+                  SINGLE_SQUARE_SIZE,
+                  SINGLE_SQUARE_SIZE,
+                  SINGLE_SQUARE_SIZE);
 }
 
 void Snake::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

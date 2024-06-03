@@ -1,5 +1,6 @@
 set(PROJECT_SOURCES
         main.cpp
+        ui-constants.h
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
