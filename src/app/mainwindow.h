@@ -25,5 +25,8 @@ private:
     Ui::MainWindow* ui;
 
     QGraphicsScene* m_scene;
+    void initializeScene();
+    void drawGameboardOnView();
+    void initializeSnake();
 };
 #endif // MAINWINDOW_H
