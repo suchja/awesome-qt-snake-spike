@@ -54,6 +54,7 @@ void MainWindow::drawGameboardOnView()
 
     p.drawRect(0, 0, SINGLE_SQUARE_SIZE, SINGLE_SQUARE_SIZE);
 
+    ui->graphicsView->scale(1,1);
     ui->graphicsView->setBackgroundBrush(QBrush(bg));
 }
 

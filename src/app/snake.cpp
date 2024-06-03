@@ -16,8 +16,8 @@ Snake::Snake(QPoint start_position, QPen pen, QBrush brush, QObject *parent)
 
 QRectF Snake::boundingRect() const
 {
-    return QRectF(x(),
-                  y(),
+    return QRectF(0,
+                  0,
                   SINGLE_SQUARE_SIZE,
                   SINGLE_SQUARE_SIZE);
 }
@@ -37,7 +37,7 @@ void Snake::moveToNextPosition()
     if ((m_move_count > 1) && (m_move_count <= 10))
     {
         m_x += SINGLE_SQUARE_SIZE;
-        setPos(x() + SINGLE_SQUARE_SIZE, y());
+        setPos(m_x, m_y);
     }
 
     if (m_move_count <= 10)
