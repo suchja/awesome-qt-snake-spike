@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
 
     m_scene = new QGraphicsScene();
-    m_scene->setSceneRect(-300, -300, 600, 600);
+    m_scene->setSceneRect(0, 0, 600, 600);
     m_scene->setBackgroundBrush(QBrush(Qt::darkRed));
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
