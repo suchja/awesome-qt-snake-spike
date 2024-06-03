@@ -32,8 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     QBrush brush(Qt::yellow);
 
     // Create snake and add it to scene
-    Snake* firstSnake = new Snake(pen, brush);
+    Snake* firstSnake = new Snake(QPoint(SINGLE_SQUARE_SIZE*2, SINGLE_SQUARE_SIZE), pen, brush);
     m_scene->addItem(firstSnake);
+    Snake* snakeElement = new Snake(QPoint(SINGLE_SQUARE_SIZE, SINGLE_SQUARE_SIZE), pen, brush);
+    m_scene->addItem(snakeElement);
 
     // Add scene to view
     ui->graphicsView->setScene(m_scene);

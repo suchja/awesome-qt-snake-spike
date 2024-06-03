@@ -8,7 +8,10 @@
 class Snake : public QGraphicsItem
 {
 public:
-    Snake(const QPen& pen = QPen(), const QBrush& brush = QBrush(), QGraphicsItem* parent = nullptr);
+    Snake(QPoint start_position = QPoint(),
+          QPen pen = QPen(),
+          QBrush brush = QBrush(),
+          QGraphicsItem* parent = nullptr);
 
     QRectF boundingRect() const override;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
@@ -16,6 +19,8 @@ public:
 private:
     QPen m_pen;
     QBrush m_brush;
+    int m_x;
+    int m_y;
 };
 
 #endif // SNAKE_H

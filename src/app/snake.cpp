@@ -3,15 +3,15 @@
 
 #include <QPainter>
 
-Snake::Snake(const QPen& pen, const QBrush& brush, QGraphicsItem *parent)
-    : QGraphicsItem(parent), m_pen(pen), m_brush(brush)
+Snake::Snake(QPoint start_position, QPen pen, QBrush brush, QGraphicsItem *parent)
+    : QGraphicsItem(parent), m_x(start_position.x()), m_y(start_position.y()), m_pen(pen), m_brush(brush)
 {
 }
 
 QRectF Snake::boundingRect() const
 {
-    return QRectF(SINGLE_SQUARE_SIZE,
-                  SINGLE_SQUARE_SIZE,
+    return QRectF(m_x,
+                  m_y,
                   SINGLE_SQUARE_SIZE,
                   SINGLE_SQUARE_SIZE);
 }
