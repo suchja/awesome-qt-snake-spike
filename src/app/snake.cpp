@@ -3,15 +3,21 @@
 
 #include <QPainter>
 
-Snake::Snake(QPoint start_position, QPen pen, QBrush brush, QGraphicsItem *parent)
-    : QGraphicsItem(parent), m_x(start_position.x()), m_y(start_position.y()), m_pen(pen), m_brush(brush)
+Snake::Snake(QPoint start_position, QPen pen, QBrush brush, QObject *parent)
+    : QObject(parent), m_pen(pen), m_brush(brush)
 {
+    m_x = start_position.x();
+    m_y = start_position.y();
+    m_move_count = 0;
+
+    // handling of position on QGraphicsScene
+    setPos(m_x, m_y);
 }
 
 QRectF Snake::boundingRect() const
 {
-    return QRectF(m_x,
-                  m_y,
+    return QRectF(x(),
+                  y(),
                   SINGLE_SQUARE_SIZE,
                   SINGLE_SQUARE_SIZE);
 }
@@ -24,4 +30,23 @@ void Snake::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     painter->setPen(m_pen);
     painter->setBrush(m_brush);
     painter->drawRect(boundingRect());
+}
+
+void Snake::moveToNextPosition()
+{
+    if ((m_move_count > 1) && (m_move_count <= 10))
+    {
+        m_x += SINGLE_SQUARE_SIZE;
+        setPos(x() + SINGLE_SQUARE_SIZE, y());
+    }
+
+    if (m_move_count <= 10)
+    {
+        m_move_count++;
+    }
+    else
+    {
+        emit hasMovementCompleted();
+        m_move_count = 0;
+    }
 }

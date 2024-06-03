@@ -16,6 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Add scene to view
     ui->graphicsView->setScene(m_scene);
+
+    // Start game
+    connect(m_snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
+    connect(&m_timer, SIGNAL(timeout()), m_snake, SLOT(moveToNextPosition()));
+//    connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
+    m_timer.start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -26,6 +32,15 @@ MainWindow::~MainWindow()
 void MainWindow::exitGame()
 {
     QApplication::quit();
+}
+
+void MainWindow::stopGame()
+{
+    m_timer.stop();
+
+    disconnect(m_snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
+    disconnect(&m_timer, SIGNAL(timeout()), m_snake, SLOT(moveToNextPosition()));
+//    disconnect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
 }
 
 void MainWindow::drawGameboardOnView()
@@ -55,6 +70,6 @@ void MainWindow::initializeSnake()
     QBrush brush(Qt::yellow);
 
     // Create snake and add it to scene
-    Snake* firstSnake = new Snake(QPoint(SINGLE_SQUARE_SIZE*2, SINGLE_SQUARE_SIZE), pen, brush);
-    m_scene->addItem(firstSnake);
+    m_snake = new Snake(QPoint(SINGLE_SQUARE_SIZE*2, SINGLE_SQUARE_SIZE), pen, brush);
+    m_scene->addItem(m_snake);
 }
