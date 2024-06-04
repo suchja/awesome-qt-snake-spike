@@ -27,7 +27,6 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete m_snake;
     delete m_scene;
 }
 

@@ -35,7 +35,6 @@ private:
 
     QGraphicsScene* m_scene;
     GameBoard* m_board;
-    Snake* m_snake;
     QTimer m_timer;
 };
 #endif // MAINWINDOW_H
