@@ -20,13 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Start game
     connect(m_snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
     connect(&m_timer, SIGNAL(timeout()), m_snake, SLOT(moveToNextPosition()));
-//    connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
     m_timer.start(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_snake;
+    delete m_scene;
 }
 
 void MainWindow::exitGame()
@@ -40,7 +41,6 @@ void MainWindow::stopGame()
 
     disconnect(m_snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
     disconnect(&m_timer, SIGNAL(timeout()), m_snake, SLOT(moveToNextPosition()));
-//    disconnect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
 }
 
 void MainWindow::drawGameboardOnView()
