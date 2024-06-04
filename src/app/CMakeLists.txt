@@ -4,6 +4,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        game.h
+        game.cpp
+        gameboard.h
+        gameboard.cpp
         snake.h
         snake.cpp
 )

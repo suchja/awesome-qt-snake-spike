@@ -10,7 +10,7 @@ class Snake : public QObject, public QGraphicsItem
     Q_OBJECT
 
 public:
-    Snake(QPoint start_position = QPoint(),
+    Snake(QPointF start_position = QPointF(),
           QPen pen = QPen(),
           QBrush brush = QBrush(),
           QObject* parent = nullptr);
@@ -27,8 +27,9 @@ signals:
 private:
     QPen m_pen;
     QBrush m_brush;
-    int m_x;
-    int m_y;
+    QPointF m_head;
+    QList<QPointF> m_tail;
+
     int m_move_count;
 };
 

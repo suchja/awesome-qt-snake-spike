@@ -6,6 +6,7 @@
 #include <QTimer>
 
 class Snake;
+class GameBoard;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,6 +34,7 @@ private:
     Ui::MainWindow* ui;
 
     QGraphicsScene* m_scene;
+    GameBoard* m_board;
     Snake* m_snake;
     QTimer m_timer;
 };
