@@ -7,6 +7,7 @@
 
 class Snake;
 class GameBoard;
+class Game;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,8 +34,8 @@ private:
 
     Ui::MainWindow* ui;
 
-    QGraphicsScene* m_scene;
     GameBoard* m_board;
+    Game* m_game;
     QTimer m_timer;
 };
 #endif // MAINWINDOW_H

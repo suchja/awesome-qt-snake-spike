@@ -10,13 +10,19 @@ class GameBoard : public QGraphicsScene
 public:
     explicit GameBoard(int tile_count_x, int tile_count_y, QObject *parent = nullptr);
 
-    const Snake& getSnake() const;
+    // IGameBoard - Core GameBoard functionality
+    QPointF getStartPositionForSnake() const;
+    bool isInsideBoard(QPointF position) const;
+
+    // IGameVisualization - Visualization of GameBoard and Content!
+    void setSnakeToStartPosition(Snake* snake);
 
 private:
     void initializeGameboardBackground();
-    void initializeAndAddSnake();
 
     QPointF m_max_bottom_right;
+    const QPointF m_snake_start_position;
+
     Snake* m_snake;
 };
 

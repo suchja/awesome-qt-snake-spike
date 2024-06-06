@@ -6,6 +6,9 @@
 
 GameBoard::GameBoard(int tile_count_x, int tile_count_y, QObject *parent)
     : QGraphicsScene{parent}
+    , m_snake_start_position(
+          QPointF((tile_count_x / 2) * SINGLE_SQUARE_SIZE,
+                  (tile_count_y / 2) * SINGLE_SQUARE_SIZE))
 {
     m_max_bottom_right.rx() = tile_count_x * SINGLE_SQUARE_SIZE;
     m_max_bottom_right.ry() = tile_count_y * SINGLE_SQUARE_SIZE;
@@ -14,7 +17,6 @@ GameBoard::GameBoard(int tile_count_x, int tile_count_y, QObject *parent)
     setItemIndexMethod(QGraphicsScene::NoIndex);
 
     initializeGameboardBackground();
-    initializeAndAddSnake();
 }
 
 void GameBoard::initializeGameboardBackground()
@@ -31,17 +33,24 @@ void GameBoard::initializeGameboardBackground()
     setBackgroundBrush(QBrush(bg));
 }
 
-void GameBoard::initializeAndAddSnake()
+QPointF GameBoard::getStartPositionForSnake() const
 {
-    QPen pen(Qt::black);
-    QBrush brush(Qt::yellow);
+    return m_snake_start_position;
+}
 
-    // Create snake and add it to scene
-    m_snake = new Snake(QPointF(SINGLE_SQUARE_SIZE*2, SINGLE_SQUARE_SIZE), pen, brush);
+void GameBoard::setSnakeToStartPosition(Snake* snake)
+{
+    m_snake = snake;
     addItem(m_snake);
 }
 
-const Snake& GameBoard::getSnake() const
+bool GameBoard::isInsideBoard(QPointF position) const
 {
-    return *m_snake;
+    if ((position.x() < 0) || (position.y() < 0))
+        return false;
+
+    if ((position.x() > m_max_bottom_right.x()) || (position.y() > m_max_bottom_right.y()))
+        return false;
+
+    return true;
 }

@@ -5,12 +5,22 @@
 #include <QPen>
 #include <QBrush>
 
+class GameBoard;
+
 class Snake : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 
 public:
-    Snake(QPointF start_position = QPointF(),
+    enum class Direction {
+        NoMove,
+        MoveLeft,
+        MoveRight,
+        MoveUp,
+        MoveDown
+    };
+
+    Snake(const GameBoard& board,
           QPen pen = QPen(),
           QBrush brush = QBrush(),
           QObject* parent = nullptr);
@@ -18,11 +28,13 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
+    void setMoveDirection(Direction direction);
+    Direction currentDirection();
+
 public slots:
     void moveToNextPosition();
 
 signals:
-    void hasMovementCompleted();
 
 private:
     QPen m_pen;
@@ -30,7 +42,9 @@ private:
     QPointF m_head;
     QList<QPointF> m_tail;
 
-    int m_move_count;
+    Direction m_move_direction;
+
+    const GameBoard& m_board;
 };
 
 #endif // SNAKE_H

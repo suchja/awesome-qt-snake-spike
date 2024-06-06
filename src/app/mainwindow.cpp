@@ -3,6 +3,7 @@
 
 #include "snake.h"
 #include "gameboard.h"
+#include "game.h"
 #include "ui-constants.h"
 
 MainWindow::MainWindow(QWidget* parent)
@@ -13,21 +14,28 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
 
     m_board = new GameBoard(30, 30, this);
-    const Snake& snake = m_board->getSnake();
+    m_game = new Game(m_board, this);
+
+    QPen snake_pen(Qt::black);
+    QBrush snake_brush(Qt::yellow);
+    Snake* snake = new Snake(*m_board,
+                             snake_pen,
+                             snake_brush,
+                             m_board);
+
+    m_board->setSnakeToStartPosition(snake);
 
     // Add scene/board to view
     ui->graphicsView->setScene(m_board);
 
     // Start game
-    connect(&snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
-    connect(&m_timer, SIGNAL(timeout()), &snake, SLOT(moveToNextPosition()));
+    connect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
     m_timer.start(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete m_scene;
 }
 
 void MainWindow::exitGame()
@@ -38,8 +46,6 @@ void MainWindow::exitGame()
 void MainWindow::stopGame()
 {
     m_timer.stop();
-    const Snake& snake = m_board->getSnake();
 
-    disconnect(&snake, SIGNAL(hasMovementCompleted()), this, SLOT(stopGame()));
-    disconnect(&m_timer, SIGNAL(timeout()), &snake, SLOT(moveToNextPosition()));
+    disconnect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
 }

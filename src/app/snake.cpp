@@ -1,13 +1,17 @@
 #include "snake.h"
 #include "ui-constants.h"
+#include "gameboard.h"
 
 #include <QPainter>
 
-Snake::Snake(QPointF start_position, QPen pen, QBrush brush, QObject *parent)
-    : QObject(parent), m_head(start_position), m_pen(pen), m_brush(brush)
+Snake::Snake(const GameBoard& board, QPen pen, QBrush brush, QObject *parent) :
+    QObject(parent),
+    m_board(board),
+    m_head(board.getStartPositionForSnake()),
+    m_pen(pen),
+    m_brush(brush),
+    m_move_direction(Direction::NoMove)
 {
-    m_move_count = 0;
-
     // handling of position on QGraphicsScene
     setPos(m_head);
 }
@@ -32,19 +36,13 @@ void Snake::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 
 void Snake::moveToNextPosition()
 {
-    if ((m_move_count > 1) && (m_move_count <= 10))
+    if (m_move_direction == Direction::NoMove)
+    {
+        return;
+    }
+    if (m_move_direction == Direction::MoveRight)
     {
         m_head.rx() += SINGLE_SQUARE_SIZE;
         setPos(m_head);
-    }
-
-    if (m_move_count <= 10)
-    {
-        m_move_count++;
-    }
-    else
-    {
-        emit hasMovementCompleted();
-        m_move_count = 0;
     }
 }

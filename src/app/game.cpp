@@ -1,7 +1,8 @@
 #include "game.h"
+#include "gameboard.h"
 
-Game::Game(QObject *parent)
-    : QObject{parent}
+Game::Game(GameBoard* board, QObject *parent)
+    : QObject{parent}, m_board(board)
 {}
 
 void Game::executeMove()
