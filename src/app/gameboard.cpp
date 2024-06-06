@@ -78,3 +78,9 @@ float GameBoard::getTopBoardBorder() const
 {
     return 0;
 }
+
+void GameBoard::keyPressEvent(QKeyEvent *event)
+{
+    // ensure that MainWindow gets informed about the event!
+    QGraphicsScene::keyPressEvent(event);
+}

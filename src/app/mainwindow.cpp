@@ -39,6 +39,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    // React to key press events
+    if (!m_game->processKeyboardInput(event->key(), event->text())) {
+        // For other keys, call the base class implementation
+        QMainWindow::keyPressEvent(event);
+    }
+}
+
 void MainWindow::exitGame()
 {
     QApplication::quit();

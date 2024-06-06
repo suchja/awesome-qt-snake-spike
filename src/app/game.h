@@ -14,9 +14,10 @@ public:
                   Snake* snake,
                   QObject *parent = nullptr);
 
+    bool processKeyboardInput(int key, QString text);
+
 public slots:
     void executeMove();
-    void processKeyboardInput(int key, QString text);
 
 signals:
 

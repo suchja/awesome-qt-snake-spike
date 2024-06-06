@@ -22,6 +22,9 @@ public:
     // This doesn't take ownership and only stores it in the QGraphicsScene
     void setSnakeToStartPosition(Snake* snake);
 
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 private:
     void initializeGameboardBackground();
 
