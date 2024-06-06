@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
 
     m_board = new GameBoard(30, 30, this);
-    m_game = new Game(m_board, this);
 
     QPen snake_pen(Qt::black);
     QBrush snake_brush(Qt::yellow);
@@ -24,6 +23,8 @@ MainWindow::MainWindow(QWidget* parent)
                              m_board);
 
     m_board->setSnakeToStartPosition(snake);
+
+    m_game = new Game(m_board, snake, this);
 
     // Add scene/board to view
     ui->graphicsView->setScene(m_board);

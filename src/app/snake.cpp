@@ -34,6 +34,20 @@ void Snake::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     painter->drawRect(boundingRect());
 }
 
+void Snake::setMoveDirection(Direction direction)
+{
+    if (m_move_direction == Direction::MoveLeft && direction == Direction::MoveRight)
+        return;
+    if (m_move_direction == Direction::MoveRight && direction == Direction::MoveLeft)
+        return;
+    if (m_move_direction == Direction::MoveUp && direction == Direction::MoveDown)
+        return;
+    if (m_move_direction == Direction::MoveDown && direction == Direction::MoveUp)
+        return;
+
+    m_move_direction = direction;
+}
+
 void Snake::moveToNextPosition()
 {
     if (m_move_direction == Direction::NoMove)

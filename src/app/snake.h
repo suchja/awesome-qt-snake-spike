@@ -31,7 +31,6 @@ public:
     void setMoveDirection(Direction direction);
     Direction currentDirection();
 
-public slots:
     void moveToNextPosition();
 
 signals:
