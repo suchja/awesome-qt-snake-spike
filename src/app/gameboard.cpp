@@ -6,12 +6,21 @@
 
 GameBoard::GameBoard(int tile_count_x, int tile_count_y, QObject *parent)
     : QGraphicsScene{parent}
-    , m_snake_start_position(
-          QPointF((tile_count_x / 2) * SINGLE_SQUARE_SIZE,
-                  (tile_count_y / 2) * SINGLE_SQUARE_SIZE))
 {
     m_max_bottom_right.rx() = tile_count_x * SINGLE_SQUARE_SIZE;
     m_max_bottom_right.ry() = tile_count_y * SINGLE_SQUARE_SIZE;
+
+    m_snake_start_position = QPointF((tile_count_x / 2) * SINGLE_SQUARE_SIZE,
+                                     (tile_count_y / 2) * SINGLE_SQUARE_SIZE);
+
+    if (tile_count_x > 20)
+    {
+        m_snake_start_length = 7;
+    }
+    else
+    {
+        m_snake_start_length = 4;
+    }
 
     setSceneRect(0, 0, m_max_bottom_right.x(), m_max_bottom_right.y());
     setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -36,6 +45,11 @@ void GameBoard::initializeGameboardBackground()
 QPointF GameBoard::getStartPositionForSnake() const
 {
     return m_snake_start_position;
+}
+
+int GameBoard::getStartLengthOfSnake() const
+{
+    return m_snake_start_length;
 }
 
 void GameBoard::setSnakeToStartPosition(Snake* snake)

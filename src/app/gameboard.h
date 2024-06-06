@@ -12,6 +12,8 @@ public:
 
     // IGameBoard - Core GameBoard functionality
     QPointF getStartPositionForSnake() const;
+    int getStartLengthOfSnake() const;
+
     bool isInsideBoard(QPointF position) const;
     float getLeftBoardBorder() const;
 
@@ -23,7 +25,9 @@ private:
     void initializeGameboardBackground();
 
     QPointF m_max_bottom_right;
-    const QPointF m_snake_start_position;
+
+    QPointF m_snake_start_position;
+    int m_snake_start_length;
 
     Snake* m_snake;
 };
