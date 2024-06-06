@@ -111,4 +111,13 @@ void Snake::moveToNextPosition()
         }
         setPos(m_head);
     }
+    else if (m_move_direction == Direction::MoveDown)
+    {
+        m_head.ry() += SINGLE_SQUARE_SIZE;
+        if (!m_board.isInsideBoard(m_head))
+        {
+            m_head.ry() = m_board.getTopBoardBorder();
+        }
+        setPos(m_head);
+    }
 }

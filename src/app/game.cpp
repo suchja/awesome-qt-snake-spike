@@ -7,7 +7,7 @@ Game::Game(GameBoard* board, Snake *snake, QObject *parent)
       m_board(board),
       m_snake(snake)
 {
-    m_snake->setMoveDirection(Snake::Direction::MoveRight);
+    m_snake->setMoveDirection(Snake::Direction::MoveDown);
 }
 
 void Game::executeMove()

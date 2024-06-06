@@ -73,3 +73,8 @@ float GameBoard::getLeftBoardBorder() const
 {
     return 0;
 }
+
+float GameBoard::getTopBoardBorder() const
+{
+    return 0;
+}
