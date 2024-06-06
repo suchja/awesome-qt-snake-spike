@@ -29,6 +29,9 @@ MainWindow::MainWindow(QWidget* parent)
     // Add scene/board to view
     ui->graphicsView->setScene(m_board);
 
+    // Install event filter on the QMainWindow
+    this->installEventFilter(this);
+
     // Start game
     connect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
     m_timer.start(500);
@@ -39,13 +42,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    // React to key press events
-    if (!m_game->processKeyboardInput(event->key(), event->text())) {
-        // For other keys, call the base class implementation
-        QMainWindow::keyPressEvent(event);
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent *>(event);
+
+        if (m_game->processKeyboardInput(keyEvent->key(), keyEvent->text())) {
+            // we handled keys successfully, otherwise the base class needs to do its work!
+            return true;
+        }
     }
+    // Call base class eventFilter
+    return QMainWindow::eventFilter(obj, event);
+
+    // React to key press events
 }
 
 void MainWindow::exitGame()
