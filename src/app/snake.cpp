@@ -67,7 +67,6 @@ void Snake::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
 QPainterPath Snake::shape() const
 {
     QPainterPath path;
-    path.setFillRule(Qt::WindingFill);
 
     path.addRect(QRectF(0, 0, SINGLE_SQUARE_SIZE, SINGLE_SQUARE_SIZE));
 

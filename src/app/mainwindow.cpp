@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget* parent)
     m_board = new GameBoard(30, 30, this);
 
     QPen snake_pen(Qt::black);
-    QBrush snake_brush(Qt::yellow);
+    QBrush snake_brush(Qt::green);
     Snake* snake = new Snake(*m_board,
                              snake_pen,
                              snake_brush,
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     // Start game
     connect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
-    m_timer.start(1000);
+    m_timer.start(500);
 }
 
 MainWindow::~MainWindow()
