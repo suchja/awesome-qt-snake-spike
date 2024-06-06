@@ -49,8 +49,13 @@ bool GameBoard::isInsideBoard(QPointF position) const
     if ((position.x() < 0) || (position.y() < 0))
         return false;
 
-    if ((position.x() > m_max_bottom_right.x()) || (position.y() > m_max_bottom_right.y()))
+    if ((position.x() >= m_max_bottom_right.x()) || (position.y() >= m_max_bottom_right.y()))
         return false;
 
     return true;
+}
+
+float GameBoard::getLeftBoardBorder() const
+{
+    return 0;
 }

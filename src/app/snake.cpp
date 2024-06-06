@@ -57,6 +57,10 @@ void Snake::moveToNextPosition()
     if (m_move_direction == Direction::MoveRight)
     {
         m_head.rx() += SINGLE_SQUARE_SIZE;
+        if (!m_board.isInsideBoard(m_head))
+        {
+            m_head.rx() = m_board.getLeftBoardBorder();
+        }
         setPos(m_head);
     }
 }

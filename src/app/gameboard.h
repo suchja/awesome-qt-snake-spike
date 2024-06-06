@@ -13,6 +13,7 @@ public:
     // IGameBoard - Core GameBoard functionality
     QPointF getStartPositionForSnake() const;
     bool isInsideBoard(QPointF position) const;
+    float getLeftBoardBorder() const;
 
     // IGameVisualization - Visualization of GameBoard and Content!
     // This doesn't take ownership and only stores it in the QGraphicsScene
