@@ -41,6 +41,6 @@ private:
     GameBoard* m_board;
     Game* m_game;
     QTimer m_timer;
-    void createGameObjects();
+    void createGame();
 };
 #endif // MAINWINDOW_H
