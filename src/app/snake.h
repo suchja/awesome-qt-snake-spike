@@ -39,6 +39,11 @@ signals:
 private:
     void initializeTailToLength(int length);
 
+    void moveRight();
+    void moveLeft();
+    void moveDown();
+    void moveUp();
+
     QPen m_pen;
     QBrush m_brush;
     QPointF m_head;

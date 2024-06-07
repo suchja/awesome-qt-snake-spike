@@ -3,6 +3,7 @@
 #include "gameboard.h"
 
 #include <QPainter>
+#include <stdexcept>
 
 Snake::Snake(const GameBoard& board, QPen pen, QBrush brush, QObject *parent) :
     QObject(parent),
@@ -102,22 +103,52 @@ void Snake::moveToNextPosition()
     m_tail.removeFirst();
     m_tail << m_head;
 
-    if (m_move_direction == Direction::MoveRight)
+    switch (m_move_direction)
     {
-        m_head.rx() += SINGLE_SQUARE_SIZE;
-        if (!m_board.isInsideBoard(m_head))
-        {
-            m_head.rx() = m_board.getLeftBoardBorder();
-        }
-        setPos(m_head);
+        case Direction::MoveRight:
+            moveRight();
+            break;
+        case Direction::MoveLeft:
+            moveLeft();
+            break;
+        case Direction::MoveDown:
+            moveDown();
+            break;
+        case Direction::MoveUp:
+            moveUp();
+            break;
+        default:
+            throw std::invalid_argument("Invalid move direction");
+            break;
     }
-    else if (m_move_direction == Direction::MoveDown)
-    {
-        m_head.ry() += SINGLE_SQUARE_SIZE;
-        if (!m_board.isInsideBoard(m_head))
-        {
-            m_head.ry() = m_board.getTopBoardBorder();
-        }
-        setPos(m_head);
+
+    setPos(m_head);
+}
+
+void Snake::moveRight() {
+    m_head.rx() += SINGLE_SQUARE_SIZE;
+    if (!m_board.isInsideBoard(m_head)) {
+        m_head.rx() = m_board.getLeftBoardBorder();
+    }
+}
+
+void Snake::moveLeft() {
+    m_head.rx() -= SINGLE_SQUARE_SIZE;
+    if (!m_board.isInsideBoard(m_head)) {
+        m_head.rx() = m_board.getRightBoardBorder();
+    }
+}
+
+void Snake::moveDown() {
+    m_head.ry() += SINGLE_SQUARE_SIZE;
+    if (!m_board.isInsideBoard(m_head)) {
+        m_head.ry() = m_board.getTopBoardBorder();
+    }
+}
+
+void Snake::moveUp() {
+    m_head.ry() -= SINGLE_SQUARE_SIZE;
+    if (!m_board.isInsideBoard(m_head)) {
+        m_head.ry() = m_board.getBottomBoardBorder();
     }
 }

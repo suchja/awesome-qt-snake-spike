@@ -78,3 +78,13 @@ float GameBoard::getTopBoardBorder() const
 {
     return 0;
 }
+
+float GameBoard::getRightBoardBorder() const
+{
+    return m_max_bottom_right.x();
+}
+
+float GameBoard::getBottomBoardBorder() const
+{
+    return m_max_bottom_right.y();
+}

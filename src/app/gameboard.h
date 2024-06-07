@@ -17,6 +17,8 @@ public:
     bool isInsideBoard(QPointF position) const;
     float getLeftBoardBorder() const;
     float getTopBoardBorder() const;
+    float getRightBoardBorder() const;
+    float getBottomBoardBorder() const;
 
     // IGameVisualization - Visualization of GameBoard and Content!
     // This doesn't take ownership and only stores it in the QGraphicsScene
