@@ -6,13 +6,8 @@
 #include "game.h"
 #include "ui-constants.h"
 
-MainWindow::MainWindow(QWidget* parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+void MainWindow::createGameObjects()
 {
-    ui->setupUi(this);
-    connect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
-
     m_board = new GameBoard(30, 30, this);
 
     QPen snake_pen(Qt::black);
@@ -25,12 +20,22 @@ MainWindow::MainWindow(QWidget* parent)
     m_board->setSnakeToStartPosition(snake);
 
     m_game = new Game(m_board, snake, this);
+}
 
-    // Add scene/board to view
-    ui->graphicsView->setScene(m_board);
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    connect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
 
-    // Install event filter on the QMainWindow
-    this->installEventFilter(this);
+    m_view = new QGraphicsView(this);
+    createGameObjects();
+
+    // connect game objects with UI
+    m_view->setScene(m_board);
+    m_view->installEventFilter(this);
+    setCentralWidget(m_view);
 
     // Start game
     connect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
