@@ -11,6 +11,10 @@ set(PROJECT_SOURCES
         gameboard.cpp
         snake.h
         snake.cpp
+        food.h
+        food.cpp
+        foodgenerator.h
+        foodgenerator.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

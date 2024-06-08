@@ -5,6 +5,7 @@
 #include "gameboard.h"
 #include "game.h"
 #include "ui-constants.h"
+#include "foodgenerator.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -42,7 +43,13 @@ void MainWindow::createGame()
                              snake_brush,
                              m_board);
 
-    m_game = new Game(m_board, snake, this);
+    QPen food_pen(Qt::white);
+    QBrush food_brush(Qt::red);
+    FoodGenerator* generator = new FoodGenerator(food_pen,
+                                                 food_brush,
+                                                 this);
+
+    m_game = new Game(m_board, generator, snake, this);
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)

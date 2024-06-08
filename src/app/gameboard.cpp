@@ -1,8 +1,11 @@
 #include "gameboard.h"
 #include "ui-constants.h"
 #include "snake.h"
+#include "food.h"
 
+#include <QRandomGenerator>
 #include <QPainter>
+#include <QTime>
 
 GameBoard::GameBoard(int tile_count_x, int tile_count_y, QObject *parent)
     : QGraphicsScene{parent}
@@ -26,6 +29,9 @@ GameBoard::GameBoard(int tile_count_x, int tile_count_y, QObject *parent)
     setItemIndexMethod(QGraphicsScene::NoIndex);
 
     initializeGameboardBackground();
+
+    // TODO: js, it would be better to get this injected!
+    m_random = QRandomGenerator::global();
 }
 
 void GameBoard::initializeGameboardBackground()
@@ -56,6 +62,23 @@ void GameBoard::setSnakeToStartPosition(Snake* snake)
 {
     m_snake = snake;
     addItem(m_snake);
+}
+
+void GameBoard::setFood(Food* food)
+{
+    addItem(food);
+}
+
+QPointF GameBoard::getEmptyPosition() const
+{
+    int x, y;
+
+    do {
+        x = m_random->bounded(30) * SINGLE_SQUARE_SIZE;
+        y = m_random->bounded(30) * SINGLE_SQUARE_SIZE;
+    } while (m_snake->isOnPosition(QPointF(x + 5, y + 5)));
+
+    return QPointF(x, y);
 }
 
 bool GameBoard::isInsideBoard(QPointF position) const

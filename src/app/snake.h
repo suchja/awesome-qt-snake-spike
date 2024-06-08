@@ -33,6 +33,7 @@ public:
     Direction currentDirection();
 
     void moveToNextPosition();
+    bool isOnPosition(QPointF position) const;
 
 signals:
 

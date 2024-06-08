@@ -1,13 +1,19 @@
 #include "game.h"
 #include "gameboard.h"
 #include "snake.h"
+#include "food.h"
+#include "foodgenerator.h"
 
-Game::Game(GameBoard* board, Snake *snake, QObject *parent)
+Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake *snake, QObject *parent)
     : QObject{parent},
       m_board(board),
+      m_food_generator(food_generator),
       m_snake(snake)
 {
-    m_board->setSnakeToStartPosition(snake);
+    m_board->setSnakeToStartPosition(m_snake);
+    QPointF food_position = m_board->getEmptyPosition();
+    Food* firstFood = m_food_generator->generateNewFood(food_position);
+    m_board->setFood(firstFood);
 }
 
 void Game::executeMove()

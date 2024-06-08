@@ -79,6 +79,11 @@ QPainterPath Snake::shape() const
     return path;
 }
 
+bool Snake::isOnPosition(QPointF position) const
+{
+    return shape().contains(mapFromScene(position));
+}
+
 void Snake::setMoveDirection(Direction direction)
 {
     if (m_move_direction == Direction::MoveLeft && direction == Direction::MoveRight)
