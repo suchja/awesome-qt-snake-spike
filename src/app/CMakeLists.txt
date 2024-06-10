@@ -9,6 +9,8 @@ set(PROJECT_SOURCES
         game.cpp
         gameboard.h
         gameboard.cpp
+        gamespeed.h
+        gamespeed.cpp
         snake.h
         snake.cpp
         food.h

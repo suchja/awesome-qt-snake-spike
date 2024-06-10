@@ -3,12 +3,15 @@
 #include "snake.h"
 #include "food.h"
 #include "foodgenerator.h"
+#include "gamespeed.h"
 
-Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake *snake, QObject *parent)
+Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake* snake, GameSpeed* speed, QObject* parent)
     : QObject{parent},
       m_board(board),
       m_food_generator(food_generator),
-      m_snake(snake)
+      m_snake(snake),
+      m_speed(speed),
+      m_tick_counter(0)
 {
     m_board->setSnakeToStartPosition(m_snake);
     QPointF food_position = m_board->getEmptyPosition();
@@ -16,8 +19,26 @@ Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake *snake, QObjec
     m_board->setFood(m_food);
 }
 
+void Game::startGame(int ticks_per_second)
+{
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(executeMove()));
+
+    // 33 FPS
+    m_timer.start(1000/ticks_per_second);
+}
+
 void Game::executeMove()
 {
+    if (m_tick_counter % m_speed->getTicksForCurrentSpeed() != 0)
+    {
+        m_tick_counter++;
+        return;
+    }
+    else
+    {
+        m_tick_counter = 1;
+    }
+
     m_snake->moveToNextPosition();
 
     if (m_snake->isOnPosition(m_food->getPosition()))
@@ -30,6 +51,8 @@ void Game::executeMove()
         QPointF food_position = m_board->getEmptyPosition();
         m_food = m_food_generator->generateNewFood(food_position);
         m_board->setFood(m_food);
+
+        (*m_speed)++;
     }
 }
 

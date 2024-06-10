@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
-#include <QTimer>
 
 class Snake;
 class GameBoard;
@@ -30,17 +29,13 @@ private slots:
     void exitGame();
     void stopGame();
 
-private:    
-    void initializeScene();
-    void drawGameboardOnView();
-    void initializeSnake();
+private:
+    void createGame();
 
     Ui::MainWindow* ui;
     QGraphicsView* m_view;
 
     GameBoard* m_board;
     Game* m_game;
-    QTimer m_timer;
-    void createGame();
 };
 #endif // MAINWINDOW_H

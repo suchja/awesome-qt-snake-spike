@@ -6,6 +6,7 @@
 #include "game.h"
 #include "ui-constants.h"
 #include "foodgenerator.h"
+#include "gamespeed.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -22,9 +23,7 @@ MainWindow::MainWindow(QWidget* parent)
     m_view->installEventFilter(this);
     setCentralWidget(m_view);
 
-    // Start game
-    connect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
-    m_timer.start(500);
+    m_game->startGame(33);
 }
 
 MainWindow::~MainWindow()
@@ -49,7 +48,9 @@ void MainWindow::createGame()
                                                  food_brush,
                                                  this);
 
-    m_game = new Game(m_board, generator, snake, this);
+    GameSpeed* speed = new GameSpeed(33, GameSpeed::Speed::Slow);
+
+    m_game = new Game(m_board, generator, snake, speed, this);
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -75,7 +76,4 @@ void MainWindow::exitGame()
 
 void MainWindow::stopGame()
 {
-    m_timer.stop();
-
-    disconnect(&m_timer, SIGNAL(timeout()), m_game, SLOT(executeMove()));
 }
