@@ -11,7 +11,8 @@ Snake::Snake(const GameBoard& board, QPen pen, QBrush brush, QObject *parent) :
     m_head(board.getStartPositionForSnake()),
     m_pen(pen),
     m_brush(brush),
-    m_move_direction(Direction::NoMove)
+    m_move_direction(Direction::NoMove),
+    m_grow_count(0)
 {
     initializeTailToLength(m_board.getStartLengthOfSnake());
 
@@ -98,6 +99,11 @@ void Snake::setMoveDirection(Direction direction)
     m_move_direction = direction;
 }
 
+void Snake::grow()
+{
+    m_grow_count++;
+}
+
 void Snake::moveToNextPosition()
 {
     if (m_move_direction == Direction::NoMove)
@@ -105,8 +111,17 @@ void Snake::moveToNextPosition()
         return;
     }
 
-    m_tail.removeFirst();
-    m_tail << m_head;
+    if (m_grow_count > 0)
+    {
+        QPointF new_tail = m_head;
+        m_tail << new_tail;
+        m_grow_count--;
+    }
+    else
+    {
+        m_tail.removeFirst();
+        m_tail << m_head;
+    }
 
     switch (m_move_direction)
     {

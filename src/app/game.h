@@ -6,6 +6,7 @@
 class GameBoard;
 class Snake;
 class FoodGenerator;
+class Food;
 
 class Game : public QObject
 {
@@ -28,6 +29,7 @@ private:
     GameBoard* m_board;
     FoodGenerator* m_food_generator;
     Snake* m_snake;
+    Food* m_food;
 };
 
 #endif // GAME_H

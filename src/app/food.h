@@ -23,6 +23,8 @@ public:
 private:
     QPen m_pen;
     QBrush m_brush;
+
+    QPointF m_position;
 };
 
 #endif // FOOD_H

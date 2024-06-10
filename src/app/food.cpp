@@ -4,9 +4,16 @@
 #include <QPainter>
 
 Food::Food(QPointF position_on_board, QPen pen, QBrush brush)
-    : m_pen(pen), m_brush(brush)
+    : m_pen(pen),
+      m_brush(brush),
+      m_position(position_on_board)
 {
     setPos(position_on_board);
+}
+
+QPointF Food::getPosition() const
+{
+    return m_position;
 }
 
 QRectF Food::boundingRect() const

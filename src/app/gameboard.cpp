@@ -69,6 +69,11 @@ void GameBoard::setFood(Food* food)
     addItem(food);
 }
 
+void GameBoard::removeFood(Food* food)
+{
+    removeItem(food);
+}
+
 QPointF GameBoard::getEmptyPosition() const
 {
     int x, y;

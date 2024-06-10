@@ -12,13 +12,25 @@ Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake *snake, QObjec
 {
     m_board->setSnakeToStartPosition(m_snake);
     QPointF food_position = m_board->getEmptyPosition();
-    Food* firstFood = m_food_generator->generateNewFood(food_position);
-    m_board->setFood(firstFood);
+    m_food = m_food_generator->generateNewFood(food_position);
+    m_board->setFood(m_food);
 }
 
 void Game::executeMove()
 {
     m_snake->moveToNextPosition();
+
+    if (m_snake->isOnPosition(m_food->getPosition()))
+    {
+        m_snake->grow();
+
+        m_board->removeFood(m_food);
+        delete m_food;
+
+        QPointF food_position = m_board->getEmptyPosition();
+        m_food = m_food_generator->generateNewFood(food_position);
+        m_board->setFood(m_food);
+    }
 }
 
 bool Game::processKeyboardInput(int key, QString text)

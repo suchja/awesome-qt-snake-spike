@@ -35,6 +35,7 @@ public:
     void moveToNextPosition();
     bool isOnPosition(QPointF position) const;
 
+    void grow();
 signals:
 
 private:
@@ -47,10 +48,12 @@ private:
 
     QPen m_pen;
     QBrush m_brush;
+
     QPointF m_head;
     QList<QPointF> m_tail;
 
     Direction m_move_direction;
+    int m_grow_count;
 
     const GameBoard& m_board;
 };
