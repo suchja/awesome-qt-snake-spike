@@ -21,6 +21,7 @@ Game::Game(GameBoard* board, FoodGenerator* food_generator, Snake* snake, GameSp
 
 void Game::startGame(int ticks_per_second)
 {
+    connect(m_snake, SIGNAL(ateItself()), this, SLOT(handleGameOver()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(executeMove()));
 
     // 33 FPS
@@ -80,4 +81,13 @@ bool Game::processKeyboardInput(int key, QString text)
     }
 
     return true;
+}
+
+void Game::handleGameOver()
+{
+    m_snake->setMoveDirection(Snake::Direction::NoMove);
+    m_timer.stop();
+
+    disconnect(m_snake, SIGNAL(ateItself()), this, SLOT(handleGameOver()));
+    disconnect(&m_timer, SIGNAL(timeout()), this, SLOT(executeMove()));
 }

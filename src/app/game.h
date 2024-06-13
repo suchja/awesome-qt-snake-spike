@@ -26,6 +26,7 @@ public:
 
 private slots:
     void executeMove();
+    void handleGameOver();
 
 signals:
 

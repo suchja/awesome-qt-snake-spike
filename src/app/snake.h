@@ -36,7 +36,9 @@ public:
     bool isOnPosition(QPointF position) const;
 
     void grow();
+
 signals:
+    void ateItself();
 
 private:
     void initializeTailToLength(int length);
@@ -45,6 +47,8 @@ private:
     void moveLeft();
     void moveDown();
     void moveUp();
+
+    bool hasEatenItself();
 
     QPen m_pen;
     QBrush m_brush;

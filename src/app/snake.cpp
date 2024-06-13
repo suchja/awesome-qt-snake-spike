@@ -143,6 +143,11 @@ void Snake::moveToNextPosition()
     }
 
     setPos(m_head);
+
+    if (this->hasEatenItself())
+    {
+        emit ateItself();
+    }
 }
 
 void Snake::moveRight() {
@@ -171,4 +176,9 @@ void Snake::moveUp() {
     if (!m_board.isInsideBoard(m_head)) {
         m_head.ry() = m_board.getBottomBoardBorder();
     }
+}
+
+bool Snake::hasEatenItself()
+{
+    return m_tail.contains(m_head);
 }
