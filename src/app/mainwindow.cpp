@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget* parent)
     m_view->installEventFilter(this);
     setCentralWidget(m_view);
 
+    connect(m_game, SIGNAL(gameOver()), this, SLOT(handleGameOver()));
     m_game->startGame(33);
 }
 
@@ -71,9 +72,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::exitGame()
 {
+    disconnect(ui->actionE_xit, SIGNAL(triggered()), this, SLOT(exitGame()));
     QApplication::quit();
 }
 
-void MainWindow::stopGame()
+void MainWindow::handleGameOver()
 {
+    disconnect(m_game, SIGNAL(gameOver()), this, SLOT(handleGameOver()));
+    QMessageBox::information(this, tr("Game Over"), tr("Application closes!"), QMessageBox::Ok, QMessageBox::Ok);
+    exitGame();
 }

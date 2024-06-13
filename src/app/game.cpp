@@ -90,4 +90,6 @@ void Game::handleGameOver()
 
     disconnect(m_snake, SIGNAL(ateItself()), this, SLOT(handleGameOver()));
     disconnect(&m_timer, SIGNAL(timeout()), this, SLOT(executeMove()));
+
+    emit gameOver();
 }

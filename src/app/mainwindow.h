@@ -27,7 +27,7 @@ protected:
 
 private slots:
     void exitGame();
-    void stopGame();
+    void handleGameOver();
 
 private:
     void createGame();

@@ -29,6 +29,7 @@ private slots:
     void handleGameOver();
 
 signals:
+    void gameOver();
 
 private:
     GameBoard* m_board;
